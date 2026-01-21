@@ -43,13 +43,6 @@ The MBIST controller consists of:
 - Data generator
 - Comparator and fail logic
 
-## Repository Structure
-rtl/ → Synthesizable Verilog modules
-tb/ → Verification testbenches
-docs/ → Architecture and microcode documentation
-constraints/ → Constraints file for the Design
-results/ → Simulation and verification outputs
-
 ## Tools & Environment
 - Xilinx Vivado
 
