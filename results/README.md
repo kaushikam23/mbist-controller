@@ -1,10 +1,9 @@
 # Results
 
-This directory contains results generated during verification and
-analysis of the MBIST controller design.
+This directory contains verification and implementation results for the
+MBIST controller.
 
 ## Contents
-- Testbench simulation screenshot demonstrating correct execution of the MBIST microcode and 100% functional coverage.
-- Vivado timing summary report showing design timing performance.
-
-
+- Testbench simulation screenshot showing correct microcode execution
+  and 100% functional coverage
+- Vivado timing summary demonstrating timing closure under constraints
