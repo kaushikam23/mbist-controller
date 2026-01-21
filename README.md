@@ -1,51 +1,39 @@
-# MBIST Controller (Verilog)
+# Microcode-Based MBIST Controller 
 
 ## Overview
 This repository contains a synthesizable Verilog implementation of a
-Memory Built-In Self-Test (MBIST) controller for SRAM testing.
+**microcode-based Memory Built-In Self-Test (MBIST) controller** with
+support for **mSR+ style segmented March execution**.
 
-The controller uses a **microcode-based FSM architecture**, where March
-test algorithms are encoded as micro-operations rather than hardwired
-state transitions. This approach improves flexibility, scalability, and
-reuse across different memory configurations.
+The design separates test behavior from control logic by encoding memory
+test operations as microcode. This enables flexible sequencing of
+multi-phase March algorithms without hardcoding large FSMs.
 
-The design is technology-independent and suitable for both FPGA
-prototyping and ASIC DFT flows.
-
-## Motivation
-Modern SoCs integrate large on-chip memories that require efficient,
-configurable self-test mechanisms. Traditional hardcoded FSMs become
-difficult to extend for multiple March algorithms.
-
-A microcode-driven MBIST controller allows:
-- Easy support for multiple March algorithms
-- Compact and structured control logic
-- Improved maintainability and extensibility
+The controller has been implemented, simulated, and timing-verified
+using Xilinx Vivado.
 
 ## Key Features
-- **Microcode-driven MBIST controller**
-- FSM for micro-instruction sequencing
-- Configurable address generation (up / down)
-- Read / Write / Compare operations
-- Fail flag and test completion signaling
-- Modular, reusable RTL structure
+- Microcode-driven MBIST control
+- Two-level sequencing:
+  - Segment index (March phase)
+  - Element index (operation within a phase)
+- Address sweep support (increment / decrement)
+- Read / write / compare operations
+- Fail address capture and test completion signaling
+- Timing-closed FPGA implementation
 
-## Supported Algorithms
-- mSR+ 
-- March C− 
-- Support for additional March algorithms via microcode ROM
+## Architecture Summary
+- Microcode ROM defines memory test behavior
+- Controller FSM sequences micro-instructions
+- Address generator performs directional sweeps
+- SRAM wrapper abstracts memory interface
+- Behavioral SRAM model used for verification
 
-## Architecture Overview
-The MBIST controller consists of:
-- Microcode ROM (stores March operations)
-- Micro-instruction sequencer FSM
-- Address generator
-- Data generator
-- Comparator and fail logic
+## Tools Used
+- Xilinx Vivado 
 
-## Tools & Environment
-- Xilinx Vivado
-
-
-
+## Verification
+- Functional simulation using Vivado simulator
+- Testbench demonstrating correct microcode execution
+- Timing summary meeting design constraints
 
